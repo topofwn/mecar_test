@@ -4,6 +4,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mecar_test/common/injection/injector.dart';
 import 'package:mecar_test/common/theme/theme_color.dart';
+import 'package:mecar_test/ui/base/bloc/base_bloc.dart';
+import 'package:mecar_test/ui/splash/splash_page.dart';
 import 'package:mecar_test/utils/myCustomRoute.dart';
 
 void main() async{
@@ -17,8 +19,24 @@ void main() async{
     statusBarBrightness:
     Brightness.dark, /* set Status bar icon color in iOS. */
   ));
+  WidgetsFlutterBinding.ensureInitialized();
   await Injection.inject();
-  runApp(MyApp());
+  runApp(EasyLocalization(
+      path: "res/langs",
+      supportedLocales: const [
+        Locale('en', 'US'),
+        Locale('ko', 'KR'),
+        Locale('vi', 'VN')
+      ],
+      fallbackLocale: const Locale('en', 'US'),
+      startLocale: const Locale('en', 'US'),
+      saveLocale: true,
+      child:   BlocProvider<BaseBloc>(
+        create: (_) => sl<BaseBloc>(),
+        child: MyApp(),
+      ),
+      )
+  );
 }
 
 class MyApp extends StatefulWidget {
@@ -51,7 +69,7 @@ class MyAppState extends State<MyApp> {
           theme: ThemeData(),
           themeMode: ThemeMode.system,
           darkTheme: ThemeData.dark(),
-          home: Container(),
+          home: SplashScreen(),
         ));
   }
 

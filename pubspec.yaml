@@ -43,6 +43,7 @@ dependencies:
   fluttertoast: ^7.1.1
   share: ^0.6.5+4
   uni_links: ^0.4.0
+  hive: ^1.4.4+1
   path_provider: ^1.6.24
   image_picker: ^0.6.7+14
   pedantic: ^1.9.2 # Analysis
@@ -71,6 +72,27 @@ flutter:
     - assets/
     - assets/image/
     - res/langs/
+
+#  fonts:
+#    - family: Roboto_Black
+#      fonts:
+#        - asset: assets/fonts/Roboto/Roboto-Black.ttf
+#
+#    - family: Roboto_Bold
+#      fonts:
+#        - asset: assets/fonts/Roboto/Roboto-Bold.tff
+#
+#    - family: Roboto_Medium
+#      fonts:
+#        - asset: assets/fonts/Roboto/Roboto-Medium.tff
+#
+#    - family: Roboto_Regular
+#      fonts:
+#        - assets: assets/fonts/Roboto/Roboto-Light.tff
+#
+#    - family: Roboto_Thin
+#      fonts:
+#        - asset: assets/fonts/Roboto/Roboto-Thin.tff
 
   # To add assets to your application, add an assets section, like this:
   # assets:

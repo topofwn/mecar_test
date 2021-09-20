@@ -11,7 +11,6 @@ abstract class DIModule {
 
 class Injection {
   static Future<void> inject() async {
-
     await RepositoryModule().provides();
     await BlocModule().provides();
   }

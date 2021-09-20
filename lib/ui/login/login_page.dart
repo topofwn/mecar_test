@@ -4,6 +4,7 @@ import 'package:mecar_test/common/injection/injector.dart';
 import 'package:mecar_test/common/theme/lang_const.dart';
 import 'package:mecar_test/common/theme/textStyle.dart';
 import 'package:mecar_test/common/widget/my_text_view.dart';
+import 'package:mecar_test/ui/home/home_page.dart';
 import 'package:mecar_test/ui/login/bloc/login_bloc.dart';
 import 'package:mecar_test/utils/localization.dart';
 import 'package:mecar_test/utils/navigate_util.dart';
@@ -40,7 +41,7 @@ class LoginScreenState extends State<LoginScreen> {
       switch (state.status) {
         case LoginStatus.success:
          //TODO: go to home page
-//         NavigateUtil.openPage(context, RegisterPage.routeName);
+         NavigateUtil.openPage(context, HomeScreen.routeName);
           break;
         case LoginStatus.fail:
           ToastUtil.showToast('Login failed. Please try again');
@@ -51,13 +52,15 @@ class LoginScreenState extends State<LoginScreen> {
   }
 
   void doLogin(String userName, String pass) {
-
+    _loginBloc.add(LoginButtonPressed(email: userName, password: pass));
   }
 
   @override
   Widget build(BuildContext context) {
     var localization = Localization.of(context);
     return Scaffold(
+      resizeToAvoidBottomInset: true,
+      backgroundColor: Colors.white,
       appBar: new AppBar(
         backgroundColor: Colors.white,
         elevation: 0,

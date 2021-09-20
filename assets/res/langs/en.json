@@ -3,5 +3,9 @@
   "log_in_splash": "LOG IN",
   "register_splash": "REGISTER",
   "sign_up": "SIGN UP",
-  "log_in": "Log in"
+  "log_in": "Log in",
+  "by_sign_up": "By signing up, you agree to Photo’s",
+  "term_of_service": "Terms of Service",
+  "privacy_policy": "Privacy Policy",
+  "and": "and"
 }

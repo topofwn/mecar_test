@@ -10,6 +10,7 @@ import 'package:mecar_test/common/widget/my_text_view.dart';
 import 'package:mecar_test/data/repository/user_repository.dart';
 import 'package:mecar_test/ui/base/bloc/base_bloc.dart';
 import 'package:mecar_test/ui/login/login_page.dart';
+import 'package:mecar_test/ui/register/register_page.dart';
 import 'package:mecar_test/utils/localization.dart';
 import 'package:mecar_test/utils/navigate_util.dart';
 import 'package:mecar_test/utils/uiUtil.dart';
@@ -138,7 +139,7 @@ class SplashScreenState extends State<SplashScreen> {
                         ),
                         GestureDetector(
                           onTap: () {
-                            //TODO: Go to register
+                            NavigateUtil.openPage(context, RegisterScreen.routeName);
                           },
                           child: Container(
                             width: ((MediaQuery.of(context).size.width - 30) / 2) - 10,

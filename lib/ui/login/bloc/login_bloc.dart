@@ -20,7 +20,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
   LoginBloc({
     @required this.userRepository,
 
-  }) : super(null);
+  }) : super(LoginState.initial());
 
 
   @override

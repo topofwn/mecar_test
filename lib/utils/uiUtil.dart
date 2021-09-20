@@ -31,8 +31,8 @@ Widget makeImageWidget(String url,
     Color color,
     BlendMode blendMode}) {
   ByteData placeHolderImage;
-  rootBundle.load('assets/app/placeHolder.png').then((value) => placeHolderImage = value);
-  url = (url == null || url.isEmpty) ? "assets/image/default.jpg" : url;
+  rootBundle.load('assets/image/user_default.jpg').then((value) => placeHolderImage = value);
+  url = (url == null || url.isEmpty) ? "assets/image/user_default.jpg" : url;
   Widget imgWidget;
   if (url.contains('http') || url.contains('https')) {
     imgWidget = FadeInImage.memoryNetwork(

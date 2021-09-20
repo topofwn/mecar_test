@@ -1,4 +1,5 @@
 import 'package:data_connection_checker/data_connection_checker.dart';
+import 'package:mecar_test/data/repository/user_repository.dart';
 import 'package:mecar_test/data/source/local/user_local_datasource.dart';
 
 
@@ -12,6 +13,7 @@ class RepositoryModule extends DIModule {
     sl.registerFactory<UserLocalDataSource>(
       () => UserLocalDataSourceImpl(appPreferences: sl()),
     );
-
+    sl.registerFactory<UserRepository>(
+            () => UserRepositoryImpl( localDataSrc: sl()));
   }
 }

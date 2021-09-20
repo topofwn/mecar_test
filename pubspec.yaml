@@ -71,7 +71,7 @@ flutter:
   assets:
     - assets/
     - assets/image/
-    - res/langs/
+    - assets/res/langs/en.json
 
 #  fonts:
 #    - family: Roboto_Black

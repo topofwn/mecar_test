@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:mecar_test/ui/home/home_page.dart';
+import 'package:mecar_test/ui/login/login_page.dart';
+import 'package:mecar_test/ui/register/register_page.dart';
 import 'package:mecar_test/ui/splash/splash_page.dart';
 
 
@@ -33,6 +36,21 @@ RouteFactory get myRoute => (RouteSettings settings) {
         case SplashScreen.routeName:
           return new MyCustomRoute(
             builder: (_) => SplashScreen(),
+            settings: settings,
+          );
+        case LoginScreen.routeName:
+          return new MyCustomRoute(
+            builder: (_) => LoginScreen(),
+            settings: settings,
+          );
+        case RegisterScreen.routeName:
+          return new MyCustomRoute(
+            builder: (_) => RegisterScreen(),
+            settings: settings,
+          );
+        case HomeScreen.routeName:
+          return new MyCustomRoute(
+            builder: (_) => HomeScreen(),
             settings: settings,
           );
         default:

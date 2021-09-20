@@ -6,6 +6,7 @@ import 'package:mecar_test/common/injection/injector.dart';
 import 'package:mecar_test/common/theme/theme_color.dart';
 import 'package:mecar_test/ui/base/bloc/base_bloc.dart';
 import 'package:mecar_test/ui/splash/splash_page.dart';
+import 'package:mecar_test/utils/localization.dart';
 import 'package:mecar_test/utils/myCustomRoute.dart';
 
 void main() async{
@@ -21,21 +22,10 @@ void main() async{
   ));
   WidgetsFlutterBinding.ensureInitialized();
   await Injection.inject();
-  runApp(EasyLocalization(
-      path: "res/langs",
-      supportedLocales: const [
-        Locale('en', 'US'),
-        Locale('ko', 'KR'),
-        Locale('vi', 'VN')
-      ],
-      fallbackLocale: const Locale('en', 'US'),
-      startLocale: const Locale('en', 'US'),
-      saveLocale: true,
-      child:   BlocProvider<BaseBloc>(
-        create: (_) => sl<BaseBloc>(),
-        child: MyApp(),
-      ),
-      )
+  runApp(BlocProvider<BaseBloc>(
+    create: (_) => sl<BaseBloc>(),
+    child: MyApp(),
+  )
   );
 }
 
@@ -61,11 +51,26 @@ class MyAppState extends State<MyApp> {
           debugShowCheckedModeBanner: false,
           title: 'Mecar test',
           localizationsDelegates: [
-            EasyLocalization.of(context).delegate,
+            const LocalizationDelegate(),
+          ],
+          localeResolutionCallback:
+              (Locale locale, Iterable<Locale> supportedLocales) {
+            if (locale == null) {
+              print("*language locale is null!!!");
+              return supportedLocales.first;
+            }
+            for (Locale supportedLocale in supportedLocales) {
+              if (supportedLocale.languageCode == locale.languageCode ||
+                  supportedLocale.countryCode == locale.countryCode) {
+                return supportedLocale;
+              }
+            }
+            return supportedLocales.first;
+          },
+          supportedLocales: [
+            const Locale('en', 'US'),
           ],
           onGenerateRoute: myRoute,
-          supportedLocales: EasyLocalization.of(context).supportedLocales,
-          locale: EasyLocalization.of(context).locale,
           theme: ThemeData(),
           themeMode: ThemeMode.system,
           darkTheme: ThemeData.dark(),

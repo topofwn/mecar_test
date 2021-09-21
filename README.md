@@ -1,6 +1,6 @@
 # mecar_test
 
-A new Flutter application.
+A Test project from Mecar.
 
 ## Getting Started
 

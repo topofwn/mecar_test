@@ -53,121 +53,124 @@ class SplashScreenState extends State<SplashScreen> {
     // TODO: implement build
     var localization = Localization.of(context);
 
-    return Scaffold(
-      body: Container(
-        width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height,
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage(
-              "assets/image/background_image.png"
-            ),
-            fit: BoxFit.cover,
-          )
-        ),
-        child: Padding(
-          padding:EdgeInsets.symmetric(vertical: 20),
-          child: Column(
-
-            children: [
-              Expanded(
-                child: makeImageWidget("assets/image/splash.png", width: MediaQuery.of(context).size.width / 2, height: 70),
+    return SafeArea(
+      child: Scaffold(
+        body: Container(
+          width: MediaQuery.of(context).size.width,
+          height: MediaQuery.of(context).size.height,
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage(
+                "assets/image/background_image.png"
               ),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 15),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        makeCircleImageWidget("assets/image/avatar.png", size: 30),
-                        SizedBox(width: 5,),
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            MyTextView(
-                              text: "Pawel Czerwinski",
-                              textAlign: TextAlign.start,
-                              textStyle: textSmallx.copyWith(
-                                fontWeight: FontWeight.w700,
-                                color: Colors.black
-                              ),
-                            ),
-                            SizedBox(height: 3,),
-                            MyTextView(
-                              text: "@pawel_czerwinski",
-                              textAlign: TextAlign.start,
-                              textStyle: textSmall.copyWith(
-                                fontWeight: FontWeight.w400,
-                                color: Colors.black
-                              ),
-                            )
-                          ],
-                        )
-                      ],
-                    ),
-                    SizedBox(height: 15,),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        GestureDetector(
-                          onTap: () {
-                            NavigateUtil.openPage(context, LoginScreen.routeName);
-                          },
-                          child: Container(
-                            width: ((MediaQuery.of(context).size.width - 30) / 2) - 10,
-                            height: 50,
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(6),
-                              border: Border.all(color: Colors.black, width: 2)
-                            ),
-                            child: Center(
-                             child: MyTextView(
-                               text: localization.trans(Lang.log_in_in_splash),
-                               textAlign: TextAlign.center,
-                               textStyle: textSmallx.copyWith(
-                                 fontWeight: FontWeight.w900,
-                                 color: Colors.black,
-                               ),
+              fit: BoxFit.cover,
+            )
+          ),
+          child: Padding(
+            padding:EdgeInsets.symmetric(vertical: 20),
+            child: Column(
 
-                             ),
-                            ),
-                          ),
-                        ),
-                        GestureDetector(
-                          onTap: () {
-                            NavigateUtil.openPage(context, RegisterScreen.routeName);
-                          },
-                          child: Container(
-                            width: ((MediaQuery.of(context).size.width - 30) / 2) - 10,
-                            height: 50,
-                            decoration: BoxDecoration(
-                                color: Colors.black,
+              children: [
+                Expanded(
+                  child: makeImageWidget("assets/image/splash.png", width: MediaQuery.of(context).size.width / 2, height: 70),
+                ),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 15),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          makeCircleImageWidget("assets/image/avatar.png", size: 30),
+                          SizedBox(width: 8,),
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              MyTextView(
+                                text: "Pawel Czerwinski",
+                                textAlign: TextAlign.start,
+                                textStyle: textSmallxx.copyWith(
+                                  fontWeight: FontWeight.w700,
+                                  color: Colors.black
+                                ),
+                              ),
+                              SizedBox(height: 3,),
+                              MyTextView(
+                                text: "@pawel_czerwinski",
+                                textAlign: TextAlign.start,
+                                textStyle: textSmallx.copyWith(
+                                  fontWeight: FontWeight.w400,
+                                  color: Colors.black.withOpacity(0.8)
+                                ),
+                              )
+                            ],
+                          )
+                        ],
+                      ),
+                      SizedBox(height: 15,),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          GestureDetector(
+                            onTap: () {
+                              NavigateUtil.openPage(context, LoginScreen.routeName);
+                            },
+                            child: Container(
+                              width: ((MediaQuery.of(context).size.width - 30) / 2) - 10,
+                              height: 50,
+                              decoration: BoxDecoration(
+                                color: Colors.white,
                                 borderRadius: BorderRadius.circular(6),
                                 border: Border.all(color: Colors.black, width: 2)
-                            ),
-                            child: Center(
-                              child: MyTextView(
-                                text: localization.trans(Lang.register_splash),
-                                textAlign: TextAlign.center,
-                                textStyle: textSmallx.copyWith(
-                                  fontWeight: FontWeight.w900,
-                                  color: Colors.white,
-                                ),
+                              ),
+                              child: Center(
+                               child: MyTextView(
+                                 text: localization.trans(Lang.log_in_in_splash),
+                                 textAlign: TextAlign.center,
+                                 textStyle: textSmallx.copyWith(
+                                   fontWeight: FontWeight.w900,
+                                   color: Colors.black,
+                                 ),
 
+                               ),
                               ),
                             ),
                           ),
-                        ),
-                      ],
-                    )
-                  ],
+                          GestureDetector(
+                            onTap: () {
+                              NavigateUtil.openPage(context, RegisterScreen.routeName);
+                            },
+                            child: Container(
+                              width: ((MediaQuery.of(context).size.width - 30) / 2) - 10,
+                              height: 50,
+                              decoration: BoxDecoration(
+                                  color: Colors.black,
+                                  borderRadius: BorderRadius.circular(6),
+                                  border: Border.all(color: Colors.black, width: 2)
+                              ),
+                              child: Center(
+                                child: MyTextView(
+                                  text: localization.trans(Lang.register_splash),
+                                  textAlign: TextAlign.center,
+                                  textStyle: textSmallx.copyWith(
+                                    fontWeight: FontWeight.w900,
+                                    color: Colors.white,
+                                  ),
+
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

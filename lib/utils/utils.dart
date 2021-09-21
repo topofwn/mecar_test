@@ -17,15 +17,9 @@ class Utils {
   static bool isValidPassword(String password) => password.isNotEmpty;
 //      _passwordRegExp.hasMatch(password);
 
-  static Future<bool> isTablet(BuildContext context) async{
-    if (Platform.isIOS) {
-      DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
-      IosDeviceInfo iosInfo = await deviceInfo.iosInfo;
-      return iosInfo.model.toLowerCase() == "ipad";
-    } else {
-      var shortestSide = MediaQuery.of(context).size.shortestSide;
-      return shortestSide > 550;
-    }
+  static bool isTablet() {
+    final data = MediaQueryData.fromWindow(WidgetsBinding.instance.window);
+    return !(data.size.shortestSide < 550);
   }
 
   static Future<String> getDeviceDetails() async {

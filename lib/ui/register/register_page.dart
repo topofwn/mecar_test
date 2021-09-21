@@ -4,6 +4,7 @@ import 'package:mecar_test/common/theme/lang_const.dart';
 import 'package:mecar_test/common/theme/textStyle.dart';
 import 'package:mecar_test/common/widget/my_text_view.dart';
 import 'package:mecar_test/ui/login/login_page.dart';
+import 'package:mecar_test/ui/splash/splash_page.dart';
 import 'package:mecar_test/utils/localization.dart';
 import 'package:mecar_test/utils/navigate_util.dart';
 import 'package:mecar_test/utils/toastUtil.dart';
@@ -43,7 +44,7 @@ class RegisterScreenState extends State<RegisterScreen> {
         case RegisterStatus.success:
         //TODO: go to home page
           ToastUtil.showToast("Register success");
-         NavigateUtil.openPage(context, LoginScreen.routeName);
+         NavigateUtil.popHasTarget(context, SplashScreen.routeName);
           break;
         case RegisterStatus.fail:
           {
@@ -70,161 +71,164 @@ class RegisterScreenState extends State<RegisterScreen> {
   @override
   Widget build(BuildContext context) {
     var localization = Localization.of(context);
-    return Scaffold(
-      resizeToAvoidBottomInset: true,
-      backgroundColor: Colors.white,
-      appBar: new AppBar(
+    return SafeArea(
+      child: Scaffold(
+        resizeToAvoidBottomInset: true,
         backgroundColor: Colors.white,
-        elevation: 0,
-        leading: GestureDetector(
-          onTap: () {
-            NavigateUtil.pop(context);
-          },
-          child: makeImageWidget("assets/image/back_icon.png", width: 15, height: 15),
+        appBar: new AppBar(
+          backgroundColor: Colors.white,
+          elevation: 0,
+          leading: GestureDetector(
+            onTap: () {
+              NavigateUtil.pop(context);
+            },
+            child: makeImageWidget("assets/image/back_icon.png", width: 15, height: 15),
+          ),
         ),
-      ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 16),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(height: 15,),
-              MyTextView(
-                text: localization.trans(Lang.register),
-                textAlign: TextAlign.start,
-                textStyle: textLargexxx.copyWith(
-                  color: Colors.black,
-                  fontWeight: FontWeight.w400,
-                ),
-              ),
-              SizedBox(height: 32,),
-              TextFormField(
-                controller: _userController,
-                textAlign: TextAlign.start,
-                maxLines: 1,
-                textInputAction: TextInputAction.go,
-                keyboardType: TextInputType.visiblePassword,
-                style: textSmallxxx.copyWith(
-                  color: Colors.black,
-                  fontWeight: FontWeight.w400,
-                ),
-                decoration: InputDecoration(
-                  filled: false,
-                  contentPadding: EdgeInsets.only(left: 17, top: 17, bottom: 17),
-                  border: OutlineInputBorder(borderSide: BorderSide(color: Colors.black, width: 2)),
-
-                ),
-              ),
-              SizedBox(height: 16,),
-              TextFormField(
-                controller: _passController,
-                textAlign: TextAlign.start,
-                maxLines: 1,
-                obscureText: true,
-                textInputAction: TextInputAction.go,
-                keyboardType: TextInputType.visiblePassword,
-                style: textSmallxxx.copyWith(
-                  color: Colors.black,
-                  fontWeight: FontWeight.w400,
-                ),
-                decoration: InputDecoration(
-                  filled: false,
-                  contentPadding: EdgeInsets.only(left: 17, top: 17, bottom: 17),
-                  border: OutlineInputBorder(borderSide: BorderSide(color: Colors.black, width: 2)),
-
-                ),
-              ),
-              SizedBox(height: 16,),
-              TextFormField(
-                controller: _rePassController,
-                textAlign: TextAlign.start,
-                maxLines: 1,
-                obscureText: true,
-                textInputAction: TextInputAction.go,
-                keyboardType: TextInputType.visiblePassword,
-                style: textSmallxxx.copyWith(
-                  color: Colors.black,
-                  fontWeight: FontWeight.w400,
-                ),
-                decoration: InputDecoration(
-                  filled: false,
-                  contentPadding: EdgeInsets.only(left: 17, top: 17, bottom: 17),
-                  border: OutlineInputBorder(borderSide: BorderSide(color: Colors.black, width: 2)),
-
-                ),
-              ),
-              SizedBox(height: 16,),
-              Container(
-                  height: 52,
-                  width: MediaQuery.of(context).size.width,
-                  child: RaisedButton(
+        body: SingleChildScrollView(
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 16),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(height: 15,),
+                MyTextView(
+                  text: localization.trans(Lang.register),
+                  textAlign: TextAlign.start,
+                  textStyle: textLargexxx.copyWith(
                     color: Colors.black,
-                    child: Center(
-                      child: MyTextView(
-                        textAlign: TextAlign.center,
-                        text: localization.trans(Lang.register_splash),
-                        textStyle: textSmallxx.copyWith(
-                            color: Colors.white,
-                            fontWeight: FontWeight.w900
+                    fontWeight: FontWeight.w400,
+                  ),
+                ),
+                SizedBox(height: 32,),
+                TextFormField(
+                  controller: _userController,
+                  textAlign: TextAlign.start,
+                  maxLines: 1,
+                  textInputAction: TextInputAction.go,
+                  keyboardType: TextInputType.visiblePassword,
+                  style: textSmallxxx.copyWith(
+                    color: Colors.black,
+                    fontWeight: FontWeight.w400,
+                  ),
+                  decoration: InputDecoration(
+                    filled: false,
+                    contentPadding: EdgeInsets.only(left: 17, top: 17, bottom: 17),
+                    border: OutlineInputBorder(borderSide: BorderSide(color: Colors.black, width: 2)),
+
+                  ),
+                ),
+                SizedBox(height: 16,),
+                TextFormField(
+                  controller: _passController,
+                  textAlign: TextAlign.start,
+                  maxLines: 1,
+                  obscureText: true,
+                  textInputAction: TextInputAction.go,
+                  keyboardType: TextInputType.visiblePassword,
+                  style: textSmallxxx.copyWith(
+                    color: Colors.black,
+                    fontWeight: FontWeight.w400,
+                  ),
+                  decoration: InputDecoration(
+                    filled: false,
+                    contentPadding: EdgeInsets.only(left: 17, top: 17, bottom: 17),
+                    border: OutlineInputBorder(borderSide: BorderSide(color: Colors.black, width: 2)),
+
+                  ),
+                ),
+                SizedBox(height: 16,),
+                TextFormField(
+                  controller: _rePassController,
+                  textAlign: TextAlign.start,
+                  maxLines: 1,
+                  obscureText: true,
+                  textInputAction: TextInputAction.go,
+                  keyboardType: TextInputType.visiblePassword,
+                  style: textSmallxxx.copyWith(
+                    color: Colors.black,
+                    fontWeight: FontWeight.w400,
+                  ),
+                  decoration: InputDecoration(
+                    filled: false,
+                    contentPadding: EdgeInsets.only(left: 17, top: 17, bottom: 17),
+                    border: OutlineInputBorder(borderSide: BorderSide(color: Colors.black, width: 2)),
+
+                  ),
+                ),
+                SizedBox(height: 16,),
+                Container(
+                    height: 52,
+                    width: MediaQuery.of(context).size.width,
+                    child: RaisedButton(
+                      color: Colors.black,
+                      child: Center(
+                        child: MyTextView(
+                          textAlign: TextAlign.center,
+                          text: localization.trans(Lang.register_splash),
+                          textStyle: textSmallxx.copyWith(
+                              color: Colors.white,
+                              fontWeight: FontWeight.w900
+                          ),
                         ),
                       ),
-                    ),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(6),
-                    ),
-                    onPressed: () {
-                      doRegister(_userController.text, _passController.text, _rePassController.text);
-                    },
-                  )
-              ),
-              SizedBox(height: 32,),
-              Container(
-                alignment: Alignment.centerLeft,
-                child: RichText(
-                  text: TextSpan(
-                    text: localization.trans(Lang.by_sign_up) + " ",
-                    style: textSmallxx.copyWith(
-                      fontWeight: FontWeight.w400,
-                      color: Colors.black,
-                    ),
-                    children: <TextSpan>[
-                      TextSpan(
-                        text: localization.trans(Lang.term_of_service) + " ",
-                        style: textSmallxx.copyWith(
-                          fontWeight: FontWeight.w400,
-                          color: Colors.black,
-                          decoration: TextDecoration.underline,
-                        )
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(6),
                       ),
-                      TextSpan(
-                          text: localization.trans(Lang.and) + " ",
-                          style: textSmallxx.copyWith(
-                            fontWeight: FontWeight.w400,
-                            color: Colors.black,
-                          )
+                      onPressed: () {
+                        doRegister(_userController.text, _passController.text, _rePassController.text);
+                      },
+                    )
+                ),
+                SizedBox(height: 32,),
+                Container(
+                  alignment: Alignment.centerLeft,
+                  child: RichText(
+                    text: TextSpan(
+                      text: localization.trans(Lang.by_sign_up) + " ",
+                      style: textSmallxx.copyWith(
+                        fontWeight: FontWeight.w400,
+                        color: Colors.black,
                       ),
-                      TextSpan(
-                          text: localization.trans(Lang.privacy_policy),
+                      children: <TextSpan>[
+                        TextSpan(
+                          text: localization.trans(Lang.term_of_service) + " ",
                           style: textSmallxx.copyWith(
                             fontWeight: FontWeight.w400,
                             color: Colors.black,
                             decoration: TextDecoration.underline,
                           )
-                      ),
-                      TextSpan(
-                          text: ".",
-                          style: textSmallxx.copyWith(
-                            fontWeight: FontWeight.w400,
-                            color: Colors.black,
-                          )
-                      ),
-                    ]
+                        ),
+                        TextSpan(
+                            text: localization.trans(Lang.and) + " ",
+                            style: textSmallxx.copyWith(
+                              fontWeight: FontWeight.w400,
+                              color: Colors.black,
+                            )
+                        ),
+                        TextSpan(
+                            text: localization.trans(Lang.privacy_policy),
+                            style: textSmallxx.copyWith(
+                              fontWeight: FontWeight.w400,
+                              color: Colors.black,
+                              decoration: TextDecoration.underline,
+                            )
+                        ),
+                        TextSpan(
+                            text: ".",
+                            style: textSmallxx.copyWith(
+                              fontWeight: FontWeight.w400,
+                              color: Colors.black,
+                            )
+                        ),
+                      ]
+                    ),
                   ),
                 ),
-              )
-            ],
+                SizedBox(height: 50,)
+              ],
+            ),
           ),
         ),
       ),

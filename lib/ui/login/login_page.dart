@@ -58,100 +58,103 @@ class LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     var localization = Localization.of(context);
-    return Scaffold(
-      resizeToAvoidBottomInset: true,
-      backgroundColor: Colors.white,
-      appBar: new AppBar(
+    return SafeArea(
+      child: Scaffold(
+        resizeToAvoidBottomInset: true,
         backgroundColor: Colors.white,
-        elevation: 0,
-        leading: GestureDetector(
-          onTap: () {
-            NavigateUtil.pop(context);
-          },
-          child: makeImageWidget("assets/image/back_icon.png", width: 15, height: 15),
+        appBar: new AppBar(
+          backgroundColor: Colors.white,
+          elevation: 0,
+          leading: GestureDetector(
+            onTap: () {
+              NavigateUtil.pop(context);
+            },
+            child: makeImageWidget("assets/image/back_icon.png", width: 15, height: 15),
+          ),
         ),
-      ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 16),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(height: 15,),
-              MyTextView(
-                text: localization.trans(Lang.log_in),
-                textAlign: TextAlign.start,
-                textStyle: textLargexxx.copyWith(
-                  color: Colors.black,
-                  fontWeight: FontWeight.w400,
-                ),
-              ),
-              SizedBox(height: 32,),
-              TextFormField(
-                controller: _userNameController,
-                textAlign: TextAlign.start,
-                maxLines: 1,
-                textInputAction: TextInputAction.go,
-                keyboardType: TextInputType.visiblePassword,
-                style: textSmallxxx.copyWith(
-                  color: Colors.black,
-                  fontWeight: FontWeight.w400,
-                ),
-                decoration: InputDecoration(
-                  filled: false,
-                  contentPadding: EdgeInsets.only(left: 17, top: 17, bottom: 17),
-                  border: OutlineInputBorder(borderSide: BorderSide(color: Colors.black, width: 2)),
-
-                ),
-              ),
-              SizedBox(height: 16,),
-              TextFormField(
-                controller: _passController,
-                textAlign: TextAlign.start,
-                maxLines: 1,
-                obscureText: true,
-                textInputAction: TextInputAction.done,
-                onFieldSubmitted: (value) {
-                  doLogin(_userNameController.text, _passController.text);
-                },
-                keyboardType: TextInputType.visiblePassword,
-                style: textSmallxxx.copyWith(
-                  color: Colors.black,
-                  fontWeight: FontWeight.w400,
-                ),
-                decoration: InputDecoration(
-                  filled: false,
-                  contentPadding: EdgeInsets.only(left: 17, top: 17, bottom: 17),
-                  border: OutlineInputBorder(borderSide: BorderSide(color: Colors.black, width: 2)),
-
-                ),
-              ),
-              SizedBox(height: 16,),
-              Container(
-                height: 52,
-                width: MediaQuery.of(context).size.width,
-                child: RaisedButton(
-                  color: Colors.black,
-                  child: Center(
-                    child: MyTextView(
-                      textAlign: TextAlign.center,
-                      text: localization.trans(Lang.log_in_in_splash),
-                      textStyle: textSmallxx.copyWith(
-                        color: Colors.white,
-                        fontWeight: FontWeight.w900
-                      ),
-                    ),
+        body: SingleChildScrollView(
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 16),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(height: 15,),
+                MyTextView(
+                  text: localization.trans(Lang.log_in),
+                  textAlign: TextAlign.start,
+                  textStyle: textLargexxx.copyWith(
+                    color: Colors.black,
+                    fontWeight: FontWeight.w400,
                   ),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(6),
+                ),
+                SizedBox(height: 32,),
+                TextFormField(
+                  controller: _userNameController,
+                  textAlign: TextAlign.start,
+                  maxLines: 1,
+                  textInputAction: TextInputAction.go,
+                  keyboardType: TextInputType.visiblePassword,
+                  style: textSmallxxx.copyWith(
+                    color: Colors.black,
+                    fontWeight: FontWeight.w400,
                   ),
-                  onPressed: () {
+                  decoration: InputDecoration(
+                    filled: false,
+                    contentPadding: EdgeInsets.only(left: 17, top: 17, bottom: 17),
+                    border: OutlineInputBorder(borderSide: BorderSide(color: Colors.black, width: 2)),
+
+                  ),
+                ),
+                SizedBox(height: 16,),
+                TextFormField(
+                  controller: _passController,
+                  textAlign: TextAlign.start,
+                  maxLines: 1,
+                  obscureText: true,
+                  textInputAction: TextInputAction.done,
+                  onFieldSubmitted: (value) {
                     doLogin(_userNameController.text, _passController.text);
                   },
-                )
-              )
-            ],
+                  keyboardType: TextInputType.visiblePassword,
+                  style: textSmallxxx.copyWith(
+                    color: Colors.black,
+                    fontWeight: FontWeight.w400,
+                  ),
+                  decoration: InputDecoration(
+                    filled: false,
+                    contentPadding: EdgeInsets.only(left: 17, top: 17, bottom: 17),
+                    border: OutlineInputBorder(borderSide: BorderSide(color: Colors.black, width: 2)),
+
+                  ),
+                ),
+                SizedBox(height: 16,),
+                Container(
+                  height: 52,
+                  width: MediaQuery.of(context).size.width,
+                  child: RaisedButton(
+                    color: Colors.black,
+                    child: Center(
+                      child: MyTextView(
+                        textAlign: TextAlign.center,
+                        text: localization.trans(Lang.log_in_in_splash),
+                        textStyle: textSmallxx.copyWith(
+                          color: Colors.white,
+                          fontWeight: FontWeight.w900
+                        ),
+                      ),
+                    ),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(6),
+                    ),
+                    onPressed: () {
+                      doLogin(_userNameController.text, _passController.text);
+                    },
+                  )
+                ),
+                SizedBox(height: 50,),
+              ],
+            ),
           ),
         ),
       ),

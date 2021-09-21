@@ -8,4 +8,8 @@ class Lang {
   static const term_of_service = "term_of_service";
   static const privacy_policy = "privacy_policy";
   static const and = "and";
+  static const discover = "discover";
+  static const what_new = "what_new";
+  static const browse_all = "browse_all";
+  static const see_more = "see_more";
 }
